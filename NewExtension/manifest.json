@@ -1,0 +1,34 @@
+{
+  "name": "Twitter Toxic Comments",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "A chrome extension to filter toxic tweets on twitter.",
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "browser_action": {
+    "default_title": "Twitter Toxic Comments",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["background.js", "jquery.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://www.twitter.com/*", "https://twitter.com/*"],
+      "js": ["jquery.js", "contentScript.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": [
+    "https://twitter.com/*",
+    "http://twitter.com/*",
+    "tabs",
+    "storage",
+    "activeTab"
+  ],
+  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
+}
